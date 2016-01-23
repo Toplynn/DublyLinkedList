@@ -1,9 +1,8 @@
 #include <stdio.h>
-
+#include "DublyLinkedList.h"
 int main()
 {
-	char c;
-	printf("Hello world");
-	scanf("%c",&c);
+	node header;
+	printf("(%p)", &header);
 	return 0;
 }
