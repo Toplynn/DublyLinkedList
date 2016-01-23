@@ -1,30 +1,37 @@
 #ifndef HEADER_DUBLY_LINKED_LIST
 #define HEADER_DUBLY_LINKED_LIST
 
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef enum {
 	LIST_OK,
 	LIST_ERROR
 }ListResault;
 
+typedef int dateType;
+typedef int sizeType;
+
 struct _node {
-	int data;
+	dateType data;
 	struct _node* next;
 	struct _node* prev;
 };
+typedef struct _node node;
 
 struct _linkedList {
-	struct _node* head;
-	int numberOfElements;
+	node* head;
+	node* tail;
+	sizeType numberOfElements;
 };
-
-typedef struct _node node;
 typedef struct _linkedList linkedList;
 
-ListResault insertData(linkedList* list, int pos, int value);
-ListResault deleteDataAtPosition(linkedList* list, int pos);
-ListResault deleteDataAsValue(linkedList* list, int value);
+void initList(linkedList* list);
+ListResault insertData(linkedList* list, sizeType pos, dateType value);
+ListResault deleteDataAtPosition(linkedList* list, sizeType pos);
+ListResault deleteDataAsValue(linkedList* list, dateType value);
 ListResault sort(linkedList* list);
-ListResault insertInSortOreder(linkedList* list, int value);
+ListResault insertInSortOreder(linkedList* list, dateType value);
 ListResault printList(linkedList* list);
 
 #endif
