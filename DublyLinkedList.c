@@ -110,6 +110,93 @@ ListResault deleteAtPosition(linkedList* list, sizeType pos)
 	return LIST_OK;
 }
 
+ListResault insertAtBegin(linkedList* list, dateType value) {
+	node* pNode;
+
+	if(list == NULL) {
+		return LIST_ERROR;
+	}
+
+	if(list->numberOfElements == 0) {
+		pNode = malloc(sizeof(node));
+		pNode->data = value;
+		pNode->next = NULL;
+		pNode->prev = NULL;
+		list->head = pNode;
+		list->tail = pNode;
+	} else {
+		insertBefore(list->head, value);
+		list->head = list->head->prev;
+	}
+
+	list->numberOfElements++;
+}
+
+ListResault insertAtEnd(linkedList* list, dateType value) {
+	node* pNode;
+
+	if(list == NULL) {
+		return LIST_ERROR;
+	}
+
+	if(list->numberOfElements == 0) {
+		pNode = malloc(sizeof(node));
+		pNode->data = value;
+		pNode->next = NULL;
+		pNode->prev = NULL;
+		list->head = pNode;
+		list->tail = pNode;
+	} else {
+		insertAfter(list->tail, value);
+		list->tail = list->tail->next;
+	}
+
+	list->numberOfElements++;
+}
+
+dateType deleteFromBegin(linkedList* list) {
+	node* pNode;
+	dateType ret;
+
+	if(list == NULL || list->numberOfElements == 0) {
+		return 0;
+	} 
+
+	pNode = list->head;
+	list->head = pNode->next;
+	ret = pNode->data;
+	deleteNode(pNode);
+
+	if(list->numberOfElements == 1) {
+		initList(list);
+	} else {
+		list->numberOfElements--;
+	}
+
+	return ret;
+}
+
+dateType deleteFromEnd(linkedList* list) {
+	node* pNode;
+	dateType ret;
+
+	if(list == NULL || list->numberOfElements == 0) {
+		return 0;
+	}
+
+	pNode = list->tail;
+	list->tail = pNode->prev;
+	ret = pNode->data;
+	deleteNode(pNode);
+	
+	if(list->numberOfElements == 1) {
+		initList(list);
+	} else {
+		list->numberOfElements--;	
+	}
+	return ret;
+}
+
 ListResault deleteDataAsValue(linkedList* list, dateType value)
 {
 	//TODO

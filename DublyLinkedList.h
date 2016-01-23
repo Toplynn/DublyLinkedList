@@ -29,6 +29,11 @@ typedef struct _linkedList linkedList;
 void initList(linkedList* list);
 ListResault insertAtPosition(linkedList* list, sizeType pos, dateType value);
 ListResault deleteAtPosition(linkedList* list, sizeType pos);
+ListResault insertAtBegin(linkedList* list, dateType value);
+ListResault insertAtEnd(linkedList* list, dateType value);
+dateType deleteFromBegin(linkedList* list);
+dateType deleteFromEnd(linkedList* list);
+
 ListResault deleteDataAsValue(linkedList* list, dateType value);
 ListResault sort(linkedList* list);
 ListResault insertInSortOreder(linkedList* list, dateType value);

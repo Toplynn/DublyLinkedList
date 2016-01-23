@@ -46,8 +46,8 @@ void test() {
 
 int main()
 {
-	linkedList lista;
-	initList(&lista);
+	linkedList myList;
+	initList(&myList);
 	int choice = 7;
 	int position;
 	int value;
@@ -56,12 +56,12 @@ int main()
 
 		printf("menu:\n");
 		printf("  0. Izlaz\n");
-		printf("  1. Dodaj element u listu\n");
-		printf("  2. Brisi element iz liste\n");
-		printf("  3. Dodaj elemnt na pocetak liste\n");
-		printf("  4. Dodaj elemnt na kraj liste\n");
-		printf("  5. Brisi elemnt sa pocetka liste\n");
-		printf("  6. Brisi elemnt sa kraja liste\n");
+		printf("  1. insertAtPosition()\n");
+		printf("  2. deleteAtPosition()\n");
+		printf("  3. insertAtBegin()\n");
+		printf("  4. insertAtEnd()\n");
+		printf("  5. deleteFromBegin()\n");
+		printf("  6. deleteFromEnd()\n");
 		scanf("%d", &choice);
 
 		switch(choice) {
@@ -70,24 +70,32 @@ int main()
 				scanf("%d", &position);
 				printf("Unesite vrijednost:");
 				scanf("%d", &value);
-				insertAtPosition(&lista, position, value);
+				insertAtPosition(&myList, position, value);
 				break;
 			case 2:
 				printf("Unesite poziciju:");
 				scanf("%d", &position);
-				deleteAtPosition(&lista, position);
+				deleteAtPosition(&myList, position);
 				break;
 			case 3:
+				printf("Unesite vrijednost:");
+				scanf("%d", &value);
+				insertAtBegin(&myList, value);
 				break;
 			case 4:
+				printf("Unesite vrijednost:");
+				scanf("%d", &value);
+				insertAtEnd(&myList, value);
 				break;
 			case 5:
+				printf("value = %d\n", deleteFromBegin(&myList));
 				break;
 			case 6:
+				printf("value = %d\n", deleteFromEnd(&myList));
 				break;
 		}
 
-		printList(&lista);
+		printList(&myList);
 	}
 
 	//test();
