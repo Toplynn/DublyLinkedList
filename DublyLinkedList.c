@@ -197,6 +197,46 @@ dateType deleteFromEnd(linkedList* list) {
 	return ret;
 }
 
+void printLinkedList(linkedList* list) {
+	node* lNode;
+	node* rNode;
+	sizeType half;
+	int i;
+
+	if(list->numberOfElements == 0) {
+		return;
+	}
+	half = (list->numberOfElements - 1) / 2;
+
+	lNode = list->head;
+	for(i=0; i<half; i++) {
+		lNode = lNode->next;
+	}
+	printf("\n(%d)", lNode->data);
+	rNode = lNode->next;
+	lNode = lNode->prev;
+	while(half--) {
+		printf("(%d)(%d)",rNode->data,lNode->data);
+		rNode = rNode->next;
+		lNode = lNode->prev;
+	}
+	if(rNode != NULL) {
+		printf("(%d)", rNode->data);
+	}
+}
+
+void clearList(linkedList* list) {
+	node* pNode;
+	node* tmpNode;
+	pNode = list->head;
+	while(pNode != NULL) {
+		tmpNode = pNode;
+		pNode = pNode->next;
+		free(tmpNode);
+	}
+	initList(list);
+}
+
 ListResault deleteDataAsValue(linkedList* list, dateType value)
 {
 	//TODO

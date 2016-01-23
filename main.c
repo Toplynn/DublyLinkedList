@@ -44,8 +44,7 @@ void test() {
 	printf("*****************************\n");
 }
 
-int main()
-{
+void menu() {
 	linkedList myList;
 	initList(&myList);
 	int choice = 7;
@@ -94,10 +93,29 @@ int main()
 				printf("value = %d\n", deleteFromEnd(&myList));
 				break;
 		}
-
-		printList(&myList);
 	}
+}
 
+void printLinkedListTest() {
+	linkedList myList;
+	initList(&myList);
+	int i;
+	int j;
+	for(i=0; i<10; i++) {
+		for(j=0; j<i; j++) {
+			insertAtEnd(&myList, j+1);
+		}
+		printf("\n");
+		printLinkedList(&myList);
+		clearList(&myList);
+	}
+	
+}
+
+int main()
+{
 	//test();
+	//menu();
+	printLinkedListTest();
 	return 0;
 }

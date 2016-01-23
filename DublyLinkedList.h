@@ -33,6 +33,8 @@ ListResault insertAtBegin(linkedList* list, dateType value);
 ListResault insertAtEnd(linkedList* list, dateType value);
 dateType deleteFromBegin(linkedList* list);
 dateType deleteFromEnd(linkedList* list);
+void printLinkedList(linkedList* list);
+void clearList(linkedList* list);
 
 ListResault deleteDataAsValue(linkedList* list, dateType value);
 ListResault sort(linkedList* list);
