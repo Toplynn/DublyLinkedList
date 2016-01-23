@@ -20,11 +20,11 @@ struct _linkedList {
 typedef struct _node node;
 typedef struct _linkedList linkedList;
 
-ListResault insertData(struct _linkedList* list, int pos, int value);
-ListResault deleteDataAtPosition(struct _linkedList* list, int pos);
-ListResault deleteDataAsValue(struct _linkedList* list, int value);
-ListResault sort(struct _linkedList* list);
-ListResault insertInSortOreder(struct _linkedList* list, int value);
-ListResault printList(struct _linkedList* list);
+ListResault insertData(linkedList* list, int pos, int value);
+ListResault deleteDataAtPosition(linkedList* list, int pos);
+ListResault deleteDataAsValue(linkedList* list, int value);
+ListResault sort(linkedList* list);
+ListResault insertInSortOreder(linkedList* list, int value);
+ListResault printList(linkedList* list);
 
 #endif

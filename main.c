@@ -2,7 +2,7 @@
 #include "DublyLinkedList.h"
 int main()
 {
-	node header;
-	printf("(%p)", &header);
+	linkedList list;
+	printf("(%p)", &list);
 	return 0;
 }
