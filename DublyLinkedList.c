@@ -26,13 +26,26 @@ static void insertAfter(node* aNode, dateType value) {
 	}
 }
 
+static void deleteNode(node* aNode) {
+	if(aNode->prev != NULL) {
+		aNode->prev->next = aNode->next;
+	}
+	
+	if(aNode->next != NULL) {
+		aNode->next->prev = aNode->prev;
+	}
+
+	free(aNode);
+}
+
+
 void initList(linkedList* list) {
 	list->numberOfElements = 0;
 	list->head = NULL;
 	list->tail = NULL;
 }
 
-ListResault insertData(linkedList* list, sizeType pos, dateType value)
+ListResault insertAtPosition(linkedList* list, sizeType pos, dateType value)
 {
 	sizeType i = 0;
 	node* pNode;
@@ -66,10 +79,35 @@ ListResault insertData(linkedList* list, sizeType pos, dateType value)
 	return LIST_OK;
 }
 
-ListResault deleteDataAtPosition(linkedList* list, sizeType pos)
+
+ListResault deleteAtPosition(linkedList* list, sizeType pos)
 {
-	//TODO
-	return LIST_ERROR;
+	node* pNode;
+	if(list == NULL || list->numberOfElements == 0) {
+		return LIST_ERROR;
+	} else if(list->numberOfElements == 1) {
+		deleteNode(list->head);
+		initList(list);
+		return LIST_OK;
+	} 
+
+	if(pos >= list->numberOfElements - 1) {
+		pNode = list->tail;
+		list->tail = pNode->prev;
+		deleteNode(pNode);
+	} else if(pos == 0) {
+		pNode = list->head;
+		list->head = pNode->next;
+		deleteNode(pNode);
+	} else {
+		pNode = list->head;
+		while(pos--) {
+			pNode = pNode->next;
+		}
+		deleteNode(pNode);
+	}
+	list->numberOfElements--;
+	return LIST_OK;
 }
 
 ListResault deleteDataAsValue(linkedList* list, dateType value)
@@ -94,7 +132,7 @@ ListResault printList(linkedList* list)
 {
 	node* pNode;
 	pNode = list->head;
-	printf("\nNULL");
+	printf("\n (%d) NULL", list->numberOfElements);
 	while(pNode != NULL) {
 		printf("<- %d -> ",pNode->data);
 		pNode = pNode->next;
