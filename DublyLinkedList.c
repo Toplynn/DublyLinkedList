@@ -1,6 +1,7 @@
 #include "DublyLinkedList.h"
 
-static void insertBefore(node* aNode, dateType value) {
+static void insertBefore(node* aNode, dateType value) 
+{
 	node* pNode;
 	pNode = malloc(sizeof(node));
 	pNode->data = value;
@@ -8,12 +9,14 @@ static void insertBefore(node* aNode, dateType value) {
 	pNode->prev = aNode->prev;
 
 	aNode->prev = pNode;
-	if(pNode->prev != NULL) {
+	if(pNode->prev != NULL) 
+	{
 		pNode->prev->next = pNode;
 	}
 }
 
-static void insertAfter(node* aNode, dateType value) {
+static void insertAfter(node* aNode, dateType value) 
+{
 	node* pNode;
 	pNode = malloc(sizeof(node));
 	pNode->data = value;
@@ -21,17 +24,21 @@ static void insertAfter(node* aNode, dateType value) {
 	pNode->prev = aNode;
 
 	aNode->next = pNode;
-	if(pNode->next != NULL) {
+	if(pNode->next != NULL) 
+	{
 		pNode->next->prev = pNode;
 	}
 }
 
-static void deleteNode(node* aNode) {
-	if(aNode->prev != NULL) {
+static void deleteNode(node* aNode) 
+{
+	if(aNode->prev != NULL) 
+	{
 		aNode->prev->next = aNode->next;
 	}
 	
-	if(aNode->next != NULL) {
+	if(aNode->next != NULL) 
+	{
 		aNode->next->prev = aNode->prev;
 	}
 
@@ -39,7 +46,8 @@ static void deleteNode(node* aNode) {
 }
 
 
-void initList(linkedList* list) {
+void initList(linkedList* list) 
+{
 	list->numberOfElements = 0;
 	list->head = NULL;
 	list->tail = NULL;
@@ -50,26 +58,35 @@ ListResault insertAtPosition(linkedList* list, sizeType pos, dateType value)
 	sizeType i = 0;
 	node* pNode;
 
-	if(list == NULL) {
+	if(list == NULL) 
+	{
 		return LIST_ERROR;
 	}
 
-	if(list->numberOfElements == 0) {
+	if(list->numberOfElements == 0) 
+	{
 		pNode = malloc(sizeof(node));
 		pNode->data = value;
 		pNode->next = NULL;
 		pNode->prev = NULL;
 		list->head = pNode;
 		list->tail = pNode;
-	} else if(pos == 0) {
+	} 
+	else if(pos == 0) 
+	{
 		insertBefore(list->head, value);
 		list->head = list->head->prev;
-	} else if(pos >= list->numberOfElements) {
+	} 
+	else if(pos >= list->numberOfElements) 
+	{
 		insertAfter(list->tail, value);
 		list->tail = list->tail->next;
-	} else {
+	} 
+	else 
+	{
 		pNode = list->head;
-		while(pos--) {
+		while(pos--) 
+		{
 			pNode = pNode->next;
 		}
 		insertBefore(pNode, value);
@@ -83,25 +100,34 @@ ListResault insertAtPosition(linkedList* list, sizeType pos, dateType value)
 ListResault deleteAtPosition(linkedList* list, sizeType pos)
 {
 	node* pNode;
-	if(list == NULL || list->numberOfElements == 0) {
+	if(list == NULL || list->numberOfElements == 0) 
+	{
 		return LIST_ERROR;
-	} else if(list->numberOfElements == 1) {
+	} 
+	else if(list->numberOfElements == 1) 
+	{
 		deleteNode(list->head);
 		initList(list);
 		return LIST_OK;
 	} 
 
-	if(pos >= list->numberOfElements - 1) {
+	if(pos >= list->numberOfElements - 1) 
+	{
 		pNode = list->tail;
 		list->tail = pNode->prev;
 		deleteNode(pNode);
-	} else if(pos == 0) {
+	} 
+	else if(pos == 0) 
+	{
 		pNode = list->head;
 		list->head = pNode->next;
 		deleteNode(pNode);
-	} else {
+	} 
+	else 
+	{
 		pNode = list->head;
-		while(pos--) {
+		while(pos--) 
+		{
 			pNode = pNode->next;
 		}
 		deleteNode(pNode);
@@ -110,21 +136,26 @@ ListResault deleteAtPosition(linkedList* list, sizeType pos)
 	return LIST_OK;
 }
 
-ListResault insertAtBegin(linkedList* list, dateType value) {
+ListResault insertAtBegin(linkedList* list, dateType value) 
+{
 	node* pNode;
 
-	if(list == NULL) {
+	if(list == NULL) 
+	{
 		return LIST_ERROR;
 	}
 
-	if(list->numberOfElements == 0) {
+	if(list->numberOfElements == 0) 
+	{
 		pNode = malloc(sizeof(node));
 		pNode->data = value;
 		pNode->next = NULL;
 		pNode->prev = NULL;
 		list->head = pNode;
 		list->tail = pNode;
-	} else {
+	} 
+	else 
+	{
 		insertBefore(list->head, value);
 		list->head = list->head->prev;
 	}
@@ -132,21 +163,26 @@ ListResault insertAtBegin(linkedList* list, dateType value) {
 	list->numberOfElements++;
 }
 
-ListResault insertAtEnd(linkedList* list, dateType value) {
+ListResault insertAtEnd(linkedList* list, dateType value) 
+{
 	node* pNode;
 
-	if(list == NULL) {
+	if(list == NULL) 
+	{
 		return LIST_ERROR;
 	}
 
-	if(list->numberOfElements == 0) {
+	if(list->numberOfElements == 0) 
+	{
 		pNode = malloc(sizeof(node));
 		pNode->data = value;
 		pNode->next = NULL;
 		pNode->prev = NULL;
 		list->head = pNode;
 		list->tail = pNode;
-	} else {
+	} 
+	else 
+	{
 		insertAfter(list->tail, value);
 		list->tail = list->tail->next;
 	}
@@ -154,11 +190,13 @@ ListResault insertAtEnd(linkedList* list, dateType value) {
 	list->numberOfElements++;
 }
 
-dateType deleteFromBegin(linkedList* list) {
+dateType deleteFromBegin(linkedList* list) 
+{
 	node* pNode;
 	dateType ret;
 
-	if(list == NULL || list->numberOfElements == 0) {
+	if(list == NULL || list->numberOfElements == 0) 
+	{
 		return 0;
 	} 
 
@@ -167,20 +205,25 @@ dateType deleteFromBegin(linkedList* list) {
 	ret = pNode->data;
 	deleteNode(pNode);
 
-	if(list->numberOfElements == 1) {
+	if(list->numberOfElements == 1) 
+	{
 		initList(list);
-	} else {
+	} 
+	else 
+	{
 		list->numberOfElements--;
 	}
 
 	return ret;
 }
 
-dateType deleteFromEnd(linkedList* list) {
+dateType deleteFromEnd(linkedList* list) 
+{
 	node* pNode;
 	dateType ret;
 
-	if(list == NULL || list->numberOfElements == 0) {
+	if(list == NULL || list->numberOfElements == 0) 
+	{
 		return 0;
 	}
 
@@ -189,47 +232,57 @@ dateType deleteFromEnd(linkedList* list) {
 	ret = pNode->data;
 	deleteNode(pNode);
 	
-	if(list->numberOfElements == 1) {
+	if(list->numberOfElements == 1) 
+	{
 		initList(list);
-	} else {
+	} 
+	else 
+	{
 		list->numberOfElements--;	
 	}
 	return ret;
 }
 
-void printLinkedList(linkedList* list) {
+void printLinkedList(linkedList* list) 
+{
 	node* lNode;
 	node* rNode;
 	sizeType half;
 	int i;
 
-	if(list->numberOfElements == 0) {
+	if(list->numberOfElements == 0) 
+	{
 		return;
 	}
 	half = (list->numberOfElements - 1) / 2;
 
 	lNode = list->head;
-	for(i=0; i<half; i++) {
+	for(i=0; i<half; i++) 
+	{
 		lNode = lNode->next;
 	}
 	printf("\n(%d)", lNode->data);
 	rNode = lNode->next;
 	lNode = lNode->prev;
-	while(half--) {
+	while(half--) 
+	{
 		printf("(%d)(%d)",rNode->data,lNode->data);
 		rNode = rNode->next;
 		lNode = lNode->prev;
 	}
-	if(rNode != NULL) {
+	if(rNode != NULL) 
+	{
 		printf("(%d)", rNode->data);
 	}
 }
 
-void clearList(linkedList* list) {
+void clearList(linkedList* list) 
+{
 	node* pNode;
 	node* tmpNode;
 	pNode = list->head;
-	while(pNode != NULL) {
+	while(pNode != NULL) 
+	{
 		tmpNode = pNode;
 		pNode = pNode->next;
 		free(tmpNode);
@@ -237,30 +290,14 @@ void clearList(linkedList* list) {
 	initList(list);
 }
 
-ListResault deleteDataAsValue(linkedList* list, dateType value)
-{
-	//TODO
-	return LIST_ERROR;
-}
-
-ListResault sort(linkedList* list)
-{
-	//TODO
-	return LIST_ERROR;
-}
-
-ListResault insertInSortOreder(linkedList* list, dateType value)
-{
-	//TODO
-	return LIST_ERROR;
-}
 
 ListResault printList(linkedList* list)
 {
 	node* pNode;
 	pNode = list->head;
 	printf("\n (%d) NULL", list->numberOfElements);
-	while(pNode != NULL) {
+	while(pNode != NULL) 
+	{
 		printf("<- %d -> ",pNode->data);
 		pNode = pNode->next;
 	}

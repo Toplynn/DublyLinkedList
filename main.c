@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "DublyLinkedList.h"
 
-void test() {
+void test() 
+{
 	linkedList list;
 	linkedList list2;
 	initList(&list);
@@ -44,14 +45,16 @@ void test() {
 	printf("*****************************\n");
 }
 
-void menu() {
+void menu() 
+{
 	linkedList myList;
 	initList(&myList);
 	int choice = 7;
 	int position;
 	int value;
 
-	while(choice) {
+	while(choice) 
+	{
 
 		printf("menu:\n");
 		printf("  0. Izlaz\n");
@@ -63,7 +66,8 @@ void menu() {
 		printf("  6. deleteFromEnd()\n");
 		scanf("%d", &choice);
 
-		switch(choice) {
+		switch(choice) 
+		{
 			case 1:
 				printf("Unesite poziciju:");
 				scanf("%d", &position);
@@ -96,13 +100,16 @@ void menu() {
 	}
 }
 
-void printLinkedListTest() {
+void printLinkedListTest() 
+{
 	linkedList myList;
 	initList(&myList);
 	int i;
 	int j;
-	for(i=0; i<10; i++) {
-		for(j=0; j<i; j++) {
+	for(i=0; i<10; i++) 
+	{
+		for(j=0; j<i; j++) 
+		{
 			insertAtEnd(&myList, j+1);
 		}
 		printf("\n");

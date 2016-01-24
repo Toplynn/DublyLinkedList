@@ -35,10 +35,6 @@ dateType deleteFromBegin(linkedList* list);
 dateType deleteFromEnd(linkedList* list);
 void printLinkedList(linkedList* list);
 void clearList(linkedList* list);
-
-ListResault deleteDataAsValue(linkedList* list, dateType value);
-ListResault sort(linkedList* list);
-ListResault insertInSortOreder(linkedList* list, dateType value);
 ListResault printList(linkedList* list);
 
 #endif
