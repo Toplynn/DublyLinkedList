@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "DublyLinkedList.h"
 
-void test() 
+void test()
 {
 	linkedList list;
 	linkedList list2;
@@ -45,7 +45,7 @@ void test()
 	printf("*****************************\n");
 }
 
-void menu() 
+void menu()
 {
 	linkedList myList;
 	initList(&myList);
@@ -53,7 +53,7 @@ void menu()
 	int position;
 	int value;
 
-	while(choice) 
+	while (choice)
 	{
 
 		printf("menu:\n");
@@ -66,57 +66,57 @@ void menu()
 		printf("  6. deleteFromEnd()\n");
 		scanf("%d", &choice);
 
-		switch(choice) 
+		switch (choice)
 		{
-			case 1:
-				printf("Unesite poziciju:");
-				scanf("%d", &position);
-				printf("Unesite vrijednost:");
-				scanf("%d", &value);
-				insertAtPosition(&myList, position, value);
-				break;
-			case 2:
-				printf("Unesite poziciju:");
-				scanf("%d", &position);
-				deleteAtPosition(&myList, position);
-				break;
-			case 3:
-				printf("Unesite vrijednost:");
-				scanf("%d", &value);
-				insertAtBegin(&myList, value);
-				break;
-			case 4:
-				printf("Unesite vrijednost:");
-				scanf("%d", &value);
-				insertAtEnd(&myList, value);
-				break;
-			case 5:
-				printf("value = %d\n", deleteFromBegin(&myList));
-				break;
-			case 6:
-				printf("value = %d\n", deleteFromEnd(&myList));
-				break;
+		case 1:
+			printf("Unesite poziciju:");
+			scanf("%d", &position);
+			printf("Unesite vrijednost:");
+			scanf("%d", &value);
+			insertAtPosition(&myList, position, value);
+			break;
+		case 2:
+			printf("Unesite poziciju:");
+			scanf("%d", &position);
+			deleteAtPosition(&myList, position);
+			break;
+		case 3:
+			printf("Unesite vrijednost:");
+			scanf("%d", &value);
+			insertAtBegin(&myList, value);
+			break;
+		case 4:
+			printf("Unesite vrijednost:");
+			scanf("%d", &value);
+			insertAtEnd(&myList, value);
+			break;
+		case 5:
+			printf("value = %d\n", deleteFromBegin(&myList));
+			break;
+		case 6:
+			printf("value = %d\n", deleteFromEnd(&myList));
+			break;
 		}
 	}
 }
 
-void printLinkedListTest() 
+void printLinkedListTest()
 {
 	linkedList myList;
 	initList(&myList);
 	int i;
 	int j;
-	for(i=0; i<10; i++) 
+	for (i = 0; i < 10; i++)
 	{
-		for(j=0; j<i; j++) 
+		for (j = 0; j < i; j++)
 		{
-			insertAtEnd(&myList, j+1);
+			insertAtEnd(&myList, j + 1);
 		}
 		printf("\n");
 		printLinkedList(&myList);
 		clearList(&myList);
 	}
-	
+
 }
 
 int main()

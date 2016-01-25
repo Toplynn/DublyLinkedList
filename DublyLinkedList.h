@@ -4,22 +4,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef enum {
-	LIST_OK,
-	LIST_ERROR
-}ListResault;
+typedef enum
+{
+	LIST_OK, LIST_ERROR
+} ListResault;
 
 typedef int dateType;
 typedef int sizeType;
 
-struct _node {
+struct _node
+{
 	dateType data;
 	struct _node* next;
 	struct _node* prev;
 };
 typedef struct _node node;
 
-struct _linkedList {
+struct _linkedList
+{
 	node* head;
 	node* tail;
 	sizeType numberOfElements;
